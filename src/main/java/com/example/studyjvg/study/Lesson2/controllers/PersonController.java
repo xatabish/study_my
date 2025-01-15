@@ -1,4 +1,4 @@
-package com.example.studyjvg.study.Lesson2.cpntrollers;
+package com.example.studyjvg.study.Lesson2.controllers;
 
 import com.example.studyjvg.study.Lesson2.Exceptions.WrongLoginException;
 import com.example.studyjvg.study.Lesson2.Exceptions.WrongPasswordException;
