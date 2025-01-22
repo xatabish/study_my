@@ -18,7 +18,12 @@ public class EmployeeMapController {
 
     @GetMapping("/add")
     public String add(@RequestParam String firstName, @RequestParam String lastName) {
-        EmployeeBook.put(firstName,lastName);
+        if (EmployeeBook.containsKey(firstName) && EmployeeBook.containsValue(lastName)) {
+            return "такой сотрудник уже существует! ";
+        } else {
+            EmployeeBook.put(firstName, lastName);
+        }
+
         return "успешно добавленно";
     }
 
