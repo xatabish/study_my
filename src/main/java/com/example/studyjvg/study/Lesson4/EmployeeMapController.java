@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class EmployeeMapController {
 
-    Map<String, String> EmployeeBook = new HashMap<>();
+        Map<String, String> EmployeeBook = new HashMap<>();
 
     @GetMapping("/add")
     public String add(@RequestParam String firstName, @RequestParam String lastName) {
