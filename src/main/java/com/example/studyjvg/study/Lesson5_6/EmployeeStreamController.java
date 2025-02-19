@@ -1,4 +1,4 @@
-package com.example.studyjvg.study.Lesson5;
+package com.example.studyjvg.study.Lesson5_6;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
