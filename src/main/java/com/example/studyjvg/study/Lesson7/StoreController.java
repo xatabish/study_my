@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/store/order")
 public class StoreController {
 
+    private final StoreService storeService;
+
+    public StoreController(StoreService storeService) {
+        this.storeService = storeService;
+    }
+
     @GetMapping("/add")
     public String add (@RequestParam int id) {
-
-        return "успешно добавленно ";
+        storeService.add(id);
+        return "Товар успешно добавлен.";
     }
 
     @GetMapping()
     public String get () {
+        return storeService.get();
 
-        return null ;
     }
 
 }
