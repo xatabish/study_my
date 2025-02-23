@@ -18,7 +18,16 @@ public class EmployeeStreamController {
 
     @GetMapping("/add")
     public String add(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int salary, @RequestParam int id) {
+
+        if (firstName.isEmpty() || lastName.isEmpty()  ) {
+           new RuntimeException("Имя или Фамилия не содержит ничего проверьте данные");
+
+        }
+
+
         Person person = new Person(firstName, lastName, salary, id);
+
+
         emp.EmployeeBook.add(person);
 
         return "ADDED  <3  ";
@@ -43,18 +52,16 @@ public class EmployeeStreamController {
 
     }
 
-    @GetMapping ("/allForId")
-    public String EmployeeInDepartmentId (@RequestParam int id) {
+    @GetMapping("/allForId")
+    public String EmployeeInDepartmentId(@RequestParam int id) {
         return emp.EmployeeInDepartmentId(id);
 
     }
 
-    @GetMapping ("/all")
+    @GetMapping("/all")
     public String AllEmployees() {
-       return emp.EmployeeBook.toString();
+        return emp.EmployeeBook.toString();
     }
-
-
 
 
 }
