@@ -30,17 +30,17 @@ public class ControllerCalculate {
 
     @GetMapping("/minus")
     public int minus(@RequestParam int a, @RequestParam int b) {
-        return a - b;
+        return service.minus(a,b);
     }
 
     @GetMapping("/multiply")
     public int multiply(@RequestParam int a, @RequestParam int b) {
-        return a * b;
+        return service.multiply(a,b);
     }
 
     @GetMapping("/divide")
     public int divide(@RequestParam int a, @RequestParam int b) {
-        return a / b;
+        return service.divide(a,b);
     }
 
 }
