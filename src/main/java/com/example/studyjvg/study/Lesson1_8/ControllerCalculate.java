@@ -1,4 +1,4 @@
-package com.example.studyjvg.study.Lesson1;
+package com.example.studyjvg.study.Lesson1_8;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +25,11 @@ public class ControllerCalculate {
 
     @GetMapping("/plus")
     public int addition(@RequestParam int a, @RequestParam int b) {
+
+        if (a == 0 || b == 0) {
+
+        }
+
        return service.addition(a , b);
     }
 
