@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,39 +29,30 @@ public class EmployeeStreamController {
         Person person = new Person(firstName, lastName, salary, id);
 
 
-        emp.EmployeeBook.add(person);
+        emp.employeeBook.add(person);
 
         return "ADDED  <3  ";
     }
 
     @GetMapping("/max-salary")
-    public String msxSalary(@RequestParam int id) {
-        Optional<Integer> maxSalary = emp.maxSalary(id);
-
-        return maxSalary.map(salary -> "Максимальная зарплата в отделе " + id + ": " + salary)
-                .orElse("Нет сотрудников в отделе под номером " + id);
-
+    public Person  maxSalary(@RequestParam int id) {
+        return emp.maxSalary(id)     ;
     }
 
     @GetMapping("/min-salary")
-    public String minSalary(@RequestParam int id) {
-        Optional<Integer> minSalary = emp.minSalary(id);
-
-        return minSalary.map(salary -> "Минимальная зарплата в отделе " + id + ": " + salary)
-                .orElse("Нет сотрудников в отделе под номером " + id);
-
-
+    public Person minSalary(@RequestParam int id) {
+        return emp.minSalary(id);
     }
 
     @GetMapping("/allForId")
-    public String EmployeeInDepartmentId(@RequestParam int id) {
+    public List<Person> EmployeeInDepartmentId(@RequestParam int id) {
         return emp.EmployeeInDepartmentId(id);
 
     }
 
     @GetMapping("/all")
     public String AllEmployees() {
-        return emp.EmployeeBook.toString();
+        return emp.employeeBook.toString();
     }
 
 

@@ -3,43 +3,51 @@ package com.example.studyjvg.study.Lesson5_6;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-
-
+import java.util.*;
 
 
 @Service
 public class EmployeeStreamService {
 
-    List<Person> EmployeeBook = new ArrayList<>();
-    private Optional maxMinSal;
+    List<Person> employeeBook = List.of(
+            new Person("Муратов", "Айадил", 95000, 1),
+            new Person("Муратова", "Дарига", 92000, 2),
+            new Person("Мухитов", "Жандос", 98000, 3),
+            new Person("Булавка", "Дмитрий", 90000, 2),
+            new Person("Кайтанов", "Жасулан", 99000, 3),
+            new Person("Бейсенбек", "Ильяс", 93000, 1));
 
-
-    public Optional maxSalary(int id) {
-        return maxMinSal =    EmployeeBook.stream()
-                .filter(e -> e.getDepartmentId() == id)
-                .map(Person :: getSalary)
-                .max(Comparator.naturalOrder());
+    public Person maxSalary(int id) {
+        return employeeBook.stream()
+                .filter(person -> person.getDepartmentId() == id)
+                .max(Comparator.comparing(Person::getSalary))
+                .orElseThrow(() -> new RuntimeException("Сотрудник не найден"));
     }
 
-    public Optional minSalary(int id) {
-        return maxMinSal =    EmployeeBook.stream()
+    public Person minSalary(int id) {
+        return employeeBook.stream()
                 .filter(e -> e.getDepartmentId() == id)
-                .map(Person :: getSalary)
-                .min(Comparator.naturalOrder());
+                .min(Comparator.comparing(Person::getSalary))
+                .orElseThrow(() -> new RuntimeException("сотрудник не найден"));
+
     }
 
-    public String EmployeeInDepartmentId (int id) {
-        List<Person> employeeBookForDepartmentId = EmployeeBook.stream()
+    public List<Person> EmployeeInDepartmentId(int id) {
+        return employeeBook.stream()
                 .filter(e -> e.getDepartmentId() == id)
                 .toList();
-
-
-        return employeeBookForDepartmentId.toString();
     }
+
+    public List<Person> getAllEmployee() {
+        return employeeBook;
+    }
+
+    public Integer sumSal(int id) {
+        return employeeBook.stream()
+                .filter(e -> e.getDepartmentId() == id)
+                .mapToInt(Person::getSalary)
+                .sum();
+    }
+
 
 }
