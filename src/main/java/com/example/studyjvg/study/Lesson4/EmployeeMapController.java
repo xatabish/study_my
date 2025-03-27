@@ -14,14 +14,14 @@ import java.util.Map;
 
 public class EmployeeMapController {
 
-        Map<String, String> EmployeeBook = new HashMap<>();
+        Map<String, String> employeeBook = new HashMap<>();
 
     @GetMapping("/add")
     public String add(@RequestParam String firstName, @RequestParam String lastName) {
-        if (EmployeeBook.containsKey(firstName) && EmployeeBook.containsValue(lastName)) {
+        if (employeeBook.containsKey(firstName) && employeeBook.containsValue(lastName)) {
             return "такой сотрудник уже существует! ";
         } else {
-            EmployeeBook.put(firstName, lastName);
+            employeeBook.put(firstName, lastName);
         }
 
         return "успешно добавленно";
@@ -31,7 +31,7 @@ public class EmployeeMapController {
     public String remove(@RequestParam String firstName, @RequestParam String lastName) {
 
 
-        EmployeeBook.remove(firstName);
+        employeeBook.remove(firstName);
 
         return "успешно удаленно";
     }
@@ -40,7 +40,7 @@ public class EmployeeMapController {
     public String findPeople(@RequestParam String firstName, @RequestParam String lastName) {
         String people = firstName + " " + lastName;
 
-        if (EmployeeBook.containsKey(firstName)) {
+        if (employeeBook.containsKey(firstName)) {
             return "да , такой сотрудник существует - " + people;
         } else {
             return "вы что то перепутали! такого сотрудника у нас нет!";
